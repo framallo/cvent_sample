@@ -29,3 +29,9 @@ group :development, :test do
 # and rake tasks are available in development mode:
 #   gem 'webrat'
 end
+
+# Load plugins' Gemfiles
+Dir.glob File.expand_path("../vendor/plugins/*/Gemfile", __FILE__) do |file|
+  puts "Loading #{file} ..." if $DEBUG # `ruby -d` or `bundle -v`
+  instance_eval File.read(file)
+end
