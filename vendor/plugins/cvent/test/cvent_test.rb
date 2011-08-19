@@ -18,12 +18,12 @@ class CventTest < Test::Unit::TestCase
     end
   end
 
-  #def test_login
-    #assert_nothing_raised do
-      #@client = Cvent.new(@config)
-      #puts @client.login
-    #end
-  #end
+  def test_login
+    assert_nothing_raised do
+      @client = Cvent.new(@config)
+      puts @client.login
+    end
+  end
 
   def test_debug
     @client = Cvent.new(@config)
