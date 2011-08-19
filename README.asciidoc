@@ -1,0 +1,37 @@
+// a2x: -fxhtml
+//
+// Build:
+// a2x README.asciidoc 
+
+
+CVent Sample application
+========================
+
+:author:    Federico Ramallo
+:max-width: 45em
+:icons:
+:pygments:
+
+== Introduction ==
+
+This is a sample application to test and learn about CVent API
+
+
+== Deploy ==
+
+=== Set up ===
+
+You need to run this steps only one time
+
+  git remote add production cvent_sample_framallo@framallo.com:cvent_sample
+
+=== New release deploy ===
+
+In order to push a new release you need to:
+
+- Add a tag with the current version
+- push your changes to production repo
+
+  git tag <version>
+  git push production --tags
+
