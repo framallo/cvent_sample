@@ -16,9 +16,13 @@ class Cvent
   end
 
   def login
-    @client.request(:wsdl, :login) do |soap| 
-      soap.body = { account_number: @ops['account_number'], username: @ops['login'], password: @ops['password'] } 
+    @client.request(:login) do |soap| 
+      soap.body = { account_number: @ops['account_number'], user_name: @ops['user_name'], password: @ops['password'] } 
     end
+  end
+
+  def soap_actions
+    client.wsdl.soap_actions
   end
 
 end

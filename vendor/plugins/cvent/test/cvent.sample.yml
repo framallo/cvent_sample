@@ -1,6 +1,6 @@
 test:
   wsdl: "https://sandbox-api.cvent.com/soap/V200611.ASMX?WSDL"
   account_number: 
-  user: 
+  user_name: 
   password: 
 

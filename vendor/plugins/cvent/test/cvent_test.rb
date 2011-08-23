@@ -18,6 +18,11 @@ class CventTest < Test::Unit::TestCase
     end
   end
 
+  def test_available_login_action
+    @client = Cvent.new(@config)
+    assert @client.soap_actions.include?(:login), "API allows login"
+  end
+
   def test_login
     assert_nothing_raised do
       @client = Cvent.new(@config)
@@ -27,9 +32,8 @@ class CventTest < Test::Unit::TestCase
 
   def test_debug
     @client = Cvent.new(@config)
-    puts @client.client.wsdl.inspect
-    puts @client.client.http.inspect
     debugger
     a = 'a'
   end
+
 end
