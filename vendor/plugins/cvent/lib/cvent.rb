@@ -17,7 +17,7 @@ class Cvent
 
   def login
     @client.request(:login) do |soap| 
-      soap.body = { account_number: @ops['account_number'], user_name: @ops['user_name'], password: @ops['password'] } 
+      soap.body = { "AccountNumber" => @ops['account_number'], "UserName" => @ops['user_name'], "Password" => @ops['password'] } 
     end
   end
 

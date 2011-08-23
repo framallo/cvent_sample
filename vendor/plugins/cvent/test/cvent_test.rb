@@ -30,10 +30,10 @@ class CventTest < Test::Unit::TestCase
     end
   end
 
-  def test_debug
-    @client = Cvent.new(@config)
-    debugger
-    a = 'a'
-  end
+  #def test_debug
+    #@client = Cvent.new(@config)
+    #debugger
+    #a = 'a'
+  #end
 
 end
