@@ -9,6 +9,7 @@ class Cvent
   def initialize(ops={})
     @ops = ops
     @client = Savon::Client.new do |wsdl, http, wsse|
+      http.auth.ssl.verify_mode       = :none
       wsdl.document = @ops['wsdl']
       yield http if block_given?
     end
