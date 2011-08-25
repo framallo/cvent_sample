@@ -16,6 +16,12 @@ CVent Sample application
 
 This is a sample application to test and learn about CVent API
 
+== Bundle ==
+
+In order to install required gems run
+
+  gem install ruby-debug19 -- --with-ruby-include=$rvm_path/src/ruby-1.9.2-p290
+  bundle install
 
 == Deploy ==
 

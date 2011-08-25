@@ -20,14 +20,21 @@ class CventTest < Test::Unit::TestCase
 
   def test_available_login_action
     @client = Cvent.new(@config)
-    assert @client.soap_actions.include?(:login), "API allows login"
+    assert @client.soap_actions.include?(:login), "CVent API allows login"
   end
 
   def test_login
     assert_nothing_raised do
       @client = Cvent.new(@config)
-      puts @client.login
     end
+  end
+
+  def test_describe_global
+    assert_nothing_raised do
+      @client = Cvent.new(@config)
+      @client.describe_global
+    end
+
   end
 
   #def test_debug
