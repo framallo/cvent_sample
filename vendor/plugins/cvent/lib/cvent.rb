@@ -30,8 +30,13 @@ class Cvent
     if login_result[:@login_success] == 'true'
       # set the new url for future requests
       @client.wsdl.document = login_result[:@server_url]
-      @header = { "CventSessionHeader"=> login_result[:@cvent_session_header]}
+      Savon.env_namespace = :soap
+      Savon.soap_header = { 
+        "CventSessionHeader"=> { "CventSessionValue"=> login_result[:@cvent_session_header] },
+        :attributes! => { "CventSessionHeader"=> { :xmlns=> "http://api.cvent.com/2006-11"} }
+      }
     end
+
   end
 
   def soap_actions
@@ -40,14 +45,11 @@ class Cvent
 
   def get_updated
     @client.request(:get_updated, @header) do |soap|
-      soap.header = @header
     end
   end
 
   def describe_global
-    @client.soap.header = @header
-    @client.request(:describe_global) do |soap|
-    end
+    r= @client.request(:describe_global) { |soap| }
   end
 
 end
