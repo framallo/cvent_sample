@@ -60,10 +60,21 @@ class Cvent
     validate_object_type object_type
 
     r= @client.request(:wsdl, :retrieve, :xmlns=> "http://api.cvent.com/2006-11") do |soap| 
-      soap.body = { "ObjectType"=> object_type, "Ids" => {"Id" => ids},
+      soap.body = { "ObjectType"=> object_type, "ins0:Ids" => {"ins0:Id" => ids},
         :attributes! => { :ids=>{ :xlmns=> "http://schemas.cvent.com/api/2006-11" } 
         }
       }
+    end
+    
+  end
+
+  def get_updated(object_type, start_date, end_date)
+    #ids = [ids] unless ids.is_a? Array
+    #hids = {}
+    validate_object_type object_type
+
+    r= @client.request(:wsdl, :get_updated, :xmlns=> "http://api.cvent.com/2006-11") do |soap| 
+      soap.body = { "ObjectType"=> object_type, "StartDate" => start_date, "EndDate" => end_date }
     end
     
   end
