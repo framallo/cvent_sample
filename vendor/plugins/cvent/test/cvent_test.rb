@@ -44,10 +44,8 @@ class CventTest < Test::Unit::TestCase
   end
 
   def test_retrieve
-    assert_nothing_raised do
       @client = Cvent.new(@config)
-      @client.describe_global
-    end
+      r= @client.retrieve("Event",'M4N9TMPVKWS')
   end
 
   #def test_debug

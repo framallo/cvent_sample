@@ -55,17 +55,13 @@ class Cvent
   end
 
   def retrieve(object_type, ids)
-    ids = [ids] unless ids.is_a? Array
+    #ids = [ids] unless ids.is_a? Array
+    #hids = {}
     validate_object_type object_type
 
-    r= @client.request(:retrieve) do |soap| 
-      soap.body = { 
-        "Retrieve"=> { "ObjectType"=> object_type, :ids => ids},
-        :attributes! => { 
-          "Retrieve"=> { 
-            :xmlns=> "http://api.cvent.com/2006-11", 
-            :ids=>{ :xlmns=> "http://schemas.cvent.com/api/2006-11" } 
-          } 
+    r= @client.request(:wsdl, :retrieve, :xmlns=> "http://api.cvent.com/2006-11") do |soap| 
+      soap.body = { "ObjectType"=> object_type, "Ids" => {"Id" => ids},
+        :attributes! => { :ids=>{ :xlmns=> "http://schemas.cvent.com/api/2006-11" } 
         }
       }
     end
@@ -74,6 +70,6 @@ class Cvent
 
   private
   def validate_object_type(type)
-    raise InvalidObjectType unless TYPES.inlude?(type)
+    raise InvalidObjectType unless TYPES.include?(type)
   end
 end
