@@ -59,13 +59,18 @@ class Cvent
     #hids = {}
     validate_object_type object_type
 
-    r= @client.request(:wsdl, :retrieve, :xmlns=> "http://api.cvent.com/2006-11") do |soap| 
-      soap.body = { "ObjectType"=> object_type, "ins0:Ids" => {"ins0:Id" => ids},
-        :attributes! => { :ids=>{ :xlmns=> "http://schemas.cvent.com/api/2006-11" } 
-        }
+    r= @client.request(:retrieve, "xmlns"=> "http://api.cvent.com/2006-11") do |soap, wsdl, http, wsse| 
+      soap.element_form_default = :unqualified
+      soap.input = [:Retrieve, {"xmlns"=>"http://api.cvent.com/2006-11"}]
+      soap.body = %{
+          <ObjectType>#{object_type}</ObjectType>
+          <Ids xmlns="http://schemas.cvent.com/api/2006-11">
+            <Id>#{ids}</Id>
+          </Ids>
       }
+
     end
-    
+    r.to_hash[:retrieve_response][:retrieve_result][:cv_object]
   end
 
   def get_updated(object_type, start_date, end_date)

@@ -45,16 +45,15 @@ class CventTest < Test::Unit::TestCase
 
   def test_retrieve
       @client = Cvent.new(@config)
-      #debugger
       r= @client.retrieve("Event",'A63FE205-7FAB-4374-8393-9F0DDD765DBD')
-      r.to_hash.inspect
+      assert r.include?(:product_detail)
   end
 
-  def test_get_updated
-      @client = Cvent.new(@config)
-      r= @client.get_updated("Event",DateTime.now.prev_year.new_offset,DateTime.now.new_offset)
-      r.to_hash.inspect
-  end
+  #def test_get_updated
+      #@client = Cvent.new(@config)
+      #r= @client.get_updated("Event",DateTime.now.prev_year.new_offset,DateTime.now.new_offset)
+      #r.to_hash.inspect
+  #end
 
   #def test_debug
     #@client = Cvent.new(@config)
